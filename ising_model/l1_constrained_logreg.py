@@ -63,7 +63,7 @@ class L1Constrained_LogReg:
 
                 val_accu, val_lik = misc_loss(X_val, y_val, beta)
                 print(
-                    "Alpha: {}, (Normalized) val lik:{}, val  accu: {}".format(
+                    "Alpha: {}, (Neg. normalized) val lik:{}, val accu: {}".format(
                         round(alpha, 4), round(val_lik, 4), round(val_accu, 4)
                     )
                 )

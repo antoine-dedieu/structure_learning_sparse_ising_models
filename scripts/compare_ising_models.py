@@ -90,6 +90,10 @@ n_vertex_L1_constrained_LR, recovered_L1_constrained_LR = metrics.recover_graph(
     W, W_L1_constrained_LR, rho
 )
 
+#############################
+######### L0-L2 LR ##########
+#############################
+
 # L0-L2 LR with warm-start
 vals_L0L2_LR = []
 bics_L0L2_LR = []
@@ -102,7 +106,7 @@ for K in Ks:
     L0L2ConstrainedLogReg = l0_l2constrained_logreg.L0L2Constrained_LogReg(
         data_train, data_val, W_init=W_init
     )
-    # The continuation heuristic allows us to not validate accross the regularization parameter
+    # The continuation heuristic allows us to not tune the regularization parameter
     L0L2ConstrainedLogReg.estimate_W(validate=False, K=K)
 
     W_L0L2_LR = L0L2ConstrainedLogReg.W
@@ -143,6 +147,11 @@ W_L1_ISE_val += W_L1_ISE_val.T
 W_L1_ISE_val /= 2
 n_vertex_L1_ISE_val, recovered_L1_ISE_val = metrics.recover_graph(W, W_L1_ISE_val, rho)
 
+
+#############################
+######### L0-L2 ISE #########
+#############################
+
 # L0-L2 ISE, warm-start
 W_init = W_L1_ISE_val.copy()
 vals_L0L2_ISE = []
@@ -155,7 +164,7 @@ for K in Ks:
     L0L2ISE = l0_l2constrained_ise.L0L2Constrained_ISE(
         data_train, data_val, W_init=W_init
     )
-    # The continuation heuristic allows us to not validate accross the regularization parameter
+    # The continuation heuristic allows us to not tune the regularization parameter
     L0L2ISE.estimate_W(validate=False, K=K)
 
     W_L0L2_ISE = L0L2ISE.W
@@ -176,6 +185,7 @@ for K in Ks:
     W_init = W_L0L2_ISE.copy()
 
 
+# Save results
 np.savez_compressed(
     savetofile,
     Ks=Ks,

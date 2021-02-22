@@ -26,7 +26,7 @@ class L0L2Constrained_LogReg:
         estimate_on_support=True,
         K=None
     ):
-        # The continuation heuristic allows us to not validate accross the regularization parameter
+        # The continuation heuristic allows us to not tune the regularization parameter
         assert K is not None
 
         # Loop over nodes
@@ -66,7 +66,7 @@ class L0L2Constrained_LogReg:
 
                 val_accu, val_lik = misc_loss(X_val, y_val, beta)
                 print(
-                    "Alpha: {}, (Normalized) val lik:{}, val  accu: {}".format(
+                    "Alpha: {}, (Neg. normalized) val lik:{}, val accu: {}".format(
                         round(alpha, 4), round(val_lik, 4), round(val_accu, 4)
                     )
                 )

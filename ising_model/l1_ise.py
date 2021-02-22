@@ -61,7 +61,7 @@ class L1_ISE:
 
                 val_accu, val_loss, val_lik = misc_loss_lik(X_val, y_val, beta)
                 print(
-                    "Alpha: {}, (Normalized) val lik:{}, val  accu: {}".format(
+                    "Alpha: {}, (Neg. normalized) val lik:{}, val accu: {}".format(
                         round(alpha, 4), round(val_lik, 4), round(val_accu, 4)
                     )
                 )
@@ -122,7 +122,7 @@ def train_L1_ISE(X, y, alpha, eta=1e-3, T_max=300, max_val=1, beta_start=None):
 
 
 def misc_loss_lik(X, y, beta):
-    # Returns misclassification rate, interaction screening loss, pseudo-likelihood
+    # Returns misclassification rate, interaction screening loss, negative normalized pseudo-likelihood
     N = float(X.shape[0])
     aux = y * (np.dot(X, beta))
     return (

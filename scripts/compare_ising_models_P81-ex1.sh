@@ -5,6 +5,7 @@ script_name='compare_ising_models.py'
 
 P=81
 rho=0.5
+type='periodic_graph_uniform_sign'
 python $script_name 0 $dataset_root 2500 $P $rho $type &
 python $script_name 1 $dataset_root 2500 $P $rho $type &
 python $script_name 2 $dataset_root 2500 $P $rho $type &
