@@ -6,7 +6,7 @@ This repo contains code for reproducing the results in the paper [Sample-Efficie
 
 ## Getting started
 
-Dependencies can be simply installed via
+Dependencies can be installed via
 
 ```
 pip install -r requirements.txt
