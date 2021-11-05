@@ -37,7 +37,6 @@ class L0L2Constrained_LogReg:
             )
             best_beta = None
             best_val_lik = np.inf
-            best_accu_lik = np.inf
 
             # Train data
             X_train = 2 * self.data_train[:, features_idx]  # scale the entries
@@ -73,11 +72,9 @@ class L0L2Constrained_LogReg:
                 if validate:
                     if val_lik < best_val_lik:
                         best_beta = beta
-                        best_accu_lik = val_accu
                         best_val_lik = val_lik
                 else:
                     best_beta = beta
-                    best_accu_lik = val_accu
                     best_val_lik = val_lik
 
             self.W[pred_idx, features_idx] = best_beta
@@ -96,7 +93,6 @@ def train_L0L2_LogReg(X, y, alpha, K, eta=1e-3, T_max=300, beta_start=None):
     Lipchtiz_coeff = 0.25 * float(np.linalg.norm(X, ord='fro') ** 2)
 
     it = 0
-    last_loss = np.inf
     while np.linalg.norm(beta_m - old_beta) > eta and it < T_max:
         it += 1
 

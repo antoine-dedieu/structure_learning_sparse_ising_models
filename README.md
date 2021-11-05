@@ -6,16 +6,10 @@ This repo contains code for reproducing the results in the paper [Sample-Efficie
 
 ## Getting started
 
-We use the following dependencies
-
-```
-Python 3.7.4 with standard distribution (anaconda)
-spgl1 package which can be downloaded via "pip install spgl1"
-```
-
 Dependencies can be simply installed via
 
 ```
+pip install -r requirements.txt
 python setup.py develop
 ```
 

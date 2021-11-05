@@ -1,5 +1,4 @@
 import math
-import sys
 import numpy as np
 from spgl1 import spg_lasso
 
@@ -30,7 +29,6 @@ class L1Constrained_LogReg:
             )
             best_beta = None
             best_val_lik = np.inf
-            best_accu_lik = np.inf
 
             # Train data
             X_train = 2 * self.data_train[:, features_idx]  # scale the entries
@@ -70,11 +68,9 @@ class L1Constrained_LogReg:
                 if validate:
                     if val_lik < best_val_lik:
                         best_beta = beta
-                        best_accu_lik = val_accu
                         best_val_lik = val_lik
                 else:
                     best_beta = beta
-                    best_accu_lik = val_accu
                     best_val_lik = val_lik
 
             self.W[pred_idx, features_idx] = best_beta

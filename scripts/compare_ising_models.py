@@ -4,7 +4,6 @@ import sys
 
 import numpy as np
 
-import torch
 from ising_model import (
     data,
     l0_l2constrained_ise,

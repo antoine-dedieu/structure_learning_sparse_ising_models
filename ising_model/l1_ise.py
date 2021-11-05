@@ -28,7 +28,6 @@ class L1_ISE:
             )
             best_beta = None
             best_val_lik = np.inf
-            best_accu_lik = np.inf
 
             # Train data
             X_train = self.data_train[:, features_idx]
@@ -68,11 +67,9 @@ class L1_ISE:
                 if validate:
                     if val_lik < best_val_lik:
                         best_beta = beta
-                        best_accu_lik = val_accu
                         best_val_lik = val_lik
                 else:
                     best_beta = beta
-                    best_accu_lik = val_accu
                     best_val_lik = val_lik
 
             self.W[pred_idx, features_idx] = best_beta
@@ -95,7 +92,6 @@ def train_L1_ISE(X, y, alpha, eta=1e-3, T_max=300, max_val=1, beta_start=None):
     Lipchtiz_coeff = float(np.linalg.norm(X, ord='fro') ** 2)
 
     it = 0
-    last_loss = np.inf
     while np.linalg.norm(beta_m - old_beta) > eta and it < T_max:
         it += 1
 

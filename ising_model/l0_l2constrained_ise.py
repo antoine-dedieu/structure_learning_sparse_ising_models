@@ -38,7 +38,6 @@ class L0L2Constrained_ISE:
             )
             best_beta = None
             best_val_lik = np.inf
-            best_accu_lik = np.inf
 
             # Train data
             X_train = self.data_train[:, features_idx]
@@ -72,11 +71,9 @@ class L0L2Constrained_ISE:
                 if validate:
                     if val_lik < best_val_lik:
                         best_beta = beta
-                        best_accu_lik = val_accu
                         best_val_lik = val_lik
                 else:
                     best_beta = beta
-                    best_accu_lik = val_accu
                     best_val_lik = val_lik
 
             self.W[pred_idx, features_idx] = best_beta
